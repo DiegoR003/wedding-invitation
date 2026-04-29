@@ -1,0 +1,120 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  transition: all 0.4s ease;
+}
+
+.scrolled {
+  background: rgba(14,12,10,0.95);
+  backdrop-filter: blur(12px);
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+.logo {
+  z-index: 101;
+}
+
+.logoLink {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+.links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.link {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.link:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+/* Burger */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  transition: all 0.3s;
+}
+
+.bar1Open { transform: translateY(6px) rotate(45deg); }
+.bar2Open { opacity: 0; }
+.bar3Open { transform: translateY(-6px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  background: var(--noir);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 100;
+}
+
+.mobileOpen {
+  transform: translateX(0);
+}
+
+.mobileLink {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mobileLink:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .links { display: none; }
+  .burger { display: flex; }
+  .nav { padding: 1.25rem 1.5rem; }
+  .scrolled { padding: 0.75rem 1.5rem; }
+}

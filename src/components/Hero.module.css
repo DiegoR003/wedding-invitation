@@ -1,0 +1,120 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(212,165,165,0.05) 0%, transparent 60%),
+    var(--noir);
+  position: relative;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: twinkle var(--dur, 4s) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.1; transform: scale(0.8); }
+  100% { opacity: 0.6; transform: scale(1.2); }
+}
+
+.topLabel {
+  margin-bottom: 1.5rem;
+  z-index: 1;
+}
+
+.ringsWrap {
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+.namesBlock {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.name1, .name2 {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 14vw, 10rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold-light) 60%, var(--gold-pale) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.ampersand {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--blush);
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.subtitle {
+  margin-top: 1.5rem;
+  z-index: 1;
+}
+
+.subtitle p {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--cream);
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+}
+
+.date {
+  margin-top: 0.75rem;
+  z-index: 1;
+}
+
+.date span {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 200;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.scroll {
+  margin-top: 1rem;
+  z-index: 1;
+}
+
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--noir));
+  pointer-events: none;
+}
