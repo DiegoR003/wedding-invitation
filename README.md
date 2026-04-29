@@ -124,4 +124,4 @@ src/
 
 ---
 
-*© 2025 · Diseño & Desarrollo por Diego R. · Todos los derechos reservados*
+*© 2026 · Diseño & Desarrollo por Diego R. · Todos los derechos reservados*
