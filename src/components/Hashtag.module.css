@@ -1,53 +1,14 @@
 .section {
-  padding: 6rem 2rem;
-  background: var(--noir);
+  background-color: #76a3a4;
+  color: #ffffff;
+  padding: clamp(1.25rem, 2vw, 1.75rem) 1rem;
   text-align: center;
-  border-top: 1px solid rgba(201,168,76,0.1);
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
-}
-
-.container {
-  position: relative;
-  z-index: 1;
-}
-
-.ornament {
-  font-size: 12px;
-  letter-spacing: 16px;
-  color: var(--gold);
-  opacity: 0.5;
-  margin-bottom: 1.5rem;
-}
-
-.hashtag {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
 }
 
 .text {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-mid);
-  line-height: 1.9;
-}
-
-.icons {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  letter-spacing: 12px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
 }

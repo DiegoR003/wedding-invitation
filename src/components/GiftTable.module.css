@@ -1,73 +1,72 @@
 .section {
-  padding: 7rem 2rem;
-  background: var(--noir-2);
-  text-align: center;
-  border-top: 1px solid rgba(201,168,76,0.1);
+  background-color: #ffffff;
+  color: #000000;
+  padding: clamp(4rem, 7vw, 6rem) 1.25rem;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+.inner {
+  width: min(100%, 900px);
+  margin-inline: auto;
+  text-align: center;
 }
 
 .title {
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 300;
-  color: var(--cream);
+  margin: 0;
+  font-family: var(--font-title-script);
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-accent-gold-dark);
 }
 
-.text {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-mid);
-  line-height: 1.9;
-  margin-bottom: 3rem;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+.description {
+  max-width: 780px;
+  margin: clamp(1.25rem, 3vw, 2rem) auto 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.22;
 }
 
 .card {
-  background: var(--noir-3);
-  border: 1px solid rgba(201,168,76,0.2);
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
+  width: min(100%, 720px);
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  background-color: #eaeaea;
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  color: var(--color-accent-gold);
+}
+
+.value {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-body-alt);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.copyButton {
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  transition: border-color 0.3s;
+  justify-content: center;
+  margin-top: 1.75rem;
+  min-height: 46px;
+  padding: 0.75rem 1.85rem;
+  border-radius: 999px;
+  border: 1px solid #76a3a4;
+  background-color: #76a3a4;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.card:hover {
-  border-color: var(--gold);
-}
-
-.store {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--cream);
-}
-
-.eventNum {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--text-mid);
-  line-height: 1.6;
-}
-
-.eventNum strong {
-  color: var(--gold);
-  font-weight: 400;
-}
-
-.heartIcon {
-  font-size: 1.5rem;
-  color: var(--blush);
+.copyButton:hover {
+  filter: brightness(0.96);
 }

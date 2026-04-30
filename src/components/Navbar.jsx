@@ -1,53 +1,73 @@
-import { useState, useEffect } from 'react'
-import styles from './Navbar.module.css'
+import { useState } from "react";
+import styles from "./Navbar.module.css";
 
-const links = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#nosotros', label: 'Nuestra Historia' },
-  { href: '#detalles', label: 'Detalles' },
-  { href: '#confirmacion', label: 'Confirmar' },
-  { href: '#regalos', label: 'Regalos' },
-]
+import logoImage from "../assets/wedding/Logo-boda2.png";
+
+const leftLinks = [
+  { href: "#informacion", label: "Información" },
+  { href: "#asistencia", label: "Asistencia" },
+  { href: "#desplazamientos", label: "Desplazamientos" },
+];
+
+const rightLinks = [
+  { href: "#musica", label: "Música" },
+  
+  { href: "#regalos", label: "Regalo de boda" },
+];
+
+const mobileLinks = [...leftLinks, ...rightLinks];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.logo}>
-        <a href="#inicio" className={styles.logoLink}>S & A</a>
-      </div>
+    <header className={styles.header}>
+      <nav className={styles.desktopNav} aria-label="Navegación principal">
+        <div className={styles.navSide}>
+          {leftLinks.map((link) => (
+            <a key={link.href} href={link.href} className={styles.link}>
+              {link.label}
+            </a>
+          ))}
+        </div>
 
-      {/* Desktop links */}
-      <div className={styles.links}>
-        {links.map(link => (
-          <a key={link.href} href={link.href} className={styles.link}>
-            {link.label}
-          </a>
-        ))}
-      </div>
+        <a href="#inicio" className={styles.logoLink} aria-label="Inicio">
+          <img className={styles.logo} src={logoImage} alt="Mónica y Javier" />
+        </a>
 
-      {/* Mobile hamburger */}
-      <button
-        className={styles.burger}
-        onClick={() => setOpen(o => !o)}
-        aria-label="Menú"
-      >
-        <span className={`${styles.bar} ${open ? styles.bar1Open : ''}`} />
-        <span className={`${styles.bar} ${open ? styles.bar2Open : ''}`} />
-        <span className={`${styles.bar} ${open ? styles.bar3Open : ''}`} />
-      </button>
+        <div className={styles.navSide}>
+          {rightLinks.map((link) => (
+            <a key={link.href} href={link.href} className={styles.link}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
-      {/* Mobile menu */}
-      <div className={`${styles.mobileMenu} ${open ? styles.mobileOpen : ''}`}>
-        {links.map(link => (
+      <nav className={styles.mobileNav} aria-label="Navegación móvil">
+        <button
+          className={styles.burger}
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((current) => !current)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <a href="#inicio" className={styles.mobileLogoLink} aria-label="Inicio">
+          <img className={styles.mobileLogo} src={logoImage} alt="Mónica y Javier" />
+        </a>
+
+        <a className={styles.mobileCta} href="#asistencia">
+          ¡Confirma asistencia!
+        </a>
+      </nav>
+
+      <div className={`${styles.mobileMenu} ${open ? styles.mobileMenuOpen : ""}`}>
+        {mobileLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}
@@ -58,6 +78,6 @@ export default function Navbar() {
           </a>
         ))}
       </div>
-    </nav>
-  )
+    </header>
+  );
 }

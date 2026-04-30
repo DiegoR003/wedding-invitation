@@ -1,89 +1,94 @@
-import styles from './EventDetails.module.css'
-import CupAnimation from './CupAnimation'
+import styles from "./EventDetails.module.css";
 
-export default function EventDetails() {
+
+
+function renderRichText(text) {
+  if (!text) return null;
+
+  return text.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+
+    return <span key={index}>{part}</span>;
+  });
+}
+
+export function EventDetails({ intro, schedule = [] }) {
   return (
-    <section className={styles.section} id="detalles">
-      <div className={styles.container}>
-        <p className="section-label">¿Dónde & cuándo?</p>
-        <h2 className={styles.title}>Los detalles del gran día</h2>
+    <section className={styles.section} aria-labelledby="event-details-title">
+      <div className={styles.inner}>
+        <header className={styles.header}>
+          <h2 id="event-details-title" className={styles.title}>
+            {intro?.title ?? "Itinerario Boda"}
+          </h2>
 
-        <div className="gold-divider">
-          <span className="gold-divider-icon">◆</span>
-        </div>
+          {intro?.text && (
+            <p className={`${styles.intro} ${styles.richText}`}>
+              {renderRichText(intro.text)}
+            </p>
+          )}
 
-        <div className={styles.cupWrap}>
-          <CupAnimation />
-        </div>
+          {intro?.dressCode && (
+            <p className={`${styles.note} ${styles.richText}`}>
+              {renderRichText(intro.dressCode)}
+            </p>
+          )}
 
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>⛪</div>
-            <p className={styles.cardTag}>Ceremonia</p>
-            <h3 className={styles.cardTitle}>Catedral de Nuestra Señora</h3>
-            <p className={styles.cardTime}>15 de Noviembre, 2025 · 17:00 h</p>
-            <p className={styles.cardAddress}>Av. Principal 100, Centro Histórico<br />Ciudad de México</p>
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`btn-gold ${styles.mapBtn}`}
+         {/* {intro?.kidsNote && (
+            <p className={`${styles.noteStrong} ${styles.richText}`}>
+              {renderRichText(intro.kidsNote)}
+            </p>
+          )} */}
+        </header>
+
+        <div className={styles.timeline}>
+          {schedule.map((item, index) => (
+            <article
+              className={`${styles.event} ${
+                index % 2 === 0 ? styles.eventRight : styles.eventLeft
+              }`}
+              key={`${item.title}-${index}`}
             >
-              Ver en el mapa
-            </a>
-          </div>
-
-          <div className={styles.dividerVert}>
-            <div className={styles.dividerLine} />
-            <div className={styles.dividerDot}>♦</div>
-            <div className={styles.dividerLine} />
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>🥂</div>
-            <p className={styles.cardTag}>Recepción</p>
-            <h3 className={styles.cardTitle}>Hacienda Los Almendros</h3>
-            <p className={styles.cardTime}>18:30 h — ¡hasta el amanecer!</p>
-            <p className={styles.cardAddress}>Carretera Escénica km 4.5<br />Ciudad de México</p>
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`btn-gold ${styles.mapBtn}`}
-            >
-              Ver en el mapa
-            </a>
-          </div>
-        </div>
-
-        {/* Timeline / itinerary */}
-        <div className={styles.itinerary}>
-          <p className={styles.itinLabel}>Itinerario del día</p>
-          <div className={styles.itinGrid}>
-            {[
-              { time: '16:30', icon: '🎊', event: 'Llegada de invitados' },
-              { time: '17:00', icon: '💒', event: 'Ceremonia religiosa' },
-              { time: '18:30', icon: '🥂', event: 'Cóctel de bienvenida' },
-              { time: '20:00', icon: '🍽️', event: 'Banquete' },
-              { time: '22:00', icon: '💃', event: 'Baile y celebración' },
-            ].map((item, i) => (
-              <div key={i} className={styles.itinItem}>
-                <span className={styles.itinTime}>{item.time}</span>
-                <span className={styles.itinDot} />
-                <span className={styles.itinIcon}>{item.icon}</span>
-                <span className={styles.itinEvent}>{item.event}</span>
+              <div className={styles.mediaCol}>
+                {item.image && (
+                  <img
+                    className={styles.eventImage}
+                    src={item.image}
+                    alt={item.title}
+                  />
+                )}
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Dresscode */}
-        <div className={styles.dresscode}>
-          <p className="section-label">Código de vestimenta</p>
-          <p className={styles.dcText}>Riguroso Formal · Black Tie</p>
-          <p className={styles.dcNote}>Los colores de la boda son blanco marfil, dorado y negro. Te pedimos evitar el blanco para los invitados.</p>
+              <div className={styles.lineCol}>
+                <span className={styles.dot} />
+              </div>
+
+              <div className={styles.contentCol}>
+                {item.time && <p className={styles.time}>{item.time}</p>}
+
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+
+                {item.description && (
+                  <p className={`${styles.description} ${styles.richText}`}>
+                    {renderRichText(item.description)}
+                  </p>
+                )}
+
+                {item.button && (
+                  <a className={styles.musicButton} href={item.button.href}>
+                    {item.button.label}
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
+
+      
     </section>
-  )
+  );
 }
+
+export default EventDetails;

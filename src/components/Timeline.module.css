@@ -1,0 +1,132 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: #000000;
+  padding: clamp(4rem, 8vw, 7rem) 1.25rem;
+}
+
+.inner {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-title-script);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 390px) 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.column {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.storyItem {
+  text-align: center;
+}
+
+.storyItem h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--color-accent-gold-dark);
+}
+
+.storyItem p {
+  margin: 1rem 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  line-height: 1.16;
+}
+
+.imageWrap {
+  text-align: center;
+}
+
+.image {
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-left: 65px
+}
+
+.dots {
+  margin-top: 1rem;
+  display: inline-flex;
+  gap: 0.55rem;
+}
+
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: var(--color-accent-gold);
+}
+
+.dots span:nth-child(2) {
+  background-color: #76a3a4;
+}
+
+.mobileLayout {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 3.5rem 1rem 5rem;
+  }
+
+  .storyGrid {
+    display: none;
+  }
+
+  .mobileLayout {
+    display: grid;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  .mobileGroup {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .mobileImageWrap {
+    width: min(78vw, 310px);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .storyItem h3 {
+    font-size: clamp(2rem, 8vw, 2.45rem);
+  }
+
+  .storyItem p {
+    max-width: 360px;
+    margin-inline: auto;
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+}
+
+@media (max-width: 767px){
+  .image {
+    margin-left: 45px;
+  }
+}

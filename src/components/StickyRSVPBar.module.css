@@ -1,0 +1,76 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1200;
+  min-height: 48px;
+  padding: 0.65rem 1rem;
+  background-color: rgb(118 163 164 / 96%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 -6px 20px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(8px);
+  border: 2px solid transparent;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.text {
+  font-family: var(--font-title-serif, "Cormorant Garamond", serif);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1;
+  color: currentColor;
+}
+
+.icon {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  flex: 0 0 auto;
+  transform: translateY(1px);
+}
+
+/* hover/click/focus en TODA la barra */
+.bar:hover,
+.bar:focus-visible,
+.bar:active {
+  background-color: #ffffff;
+  color: #6f989b;
+  border-color: #6f989b;
+}
+
+/* evita estilos azules/morados de link */
+.bar:visited {
+  color: #ffffff;
+}
+
+.bar:hover:visited,
+.bar:focus-visible:visited,
+.bar:active:visited {
+  color: #6f989b;
+}
+
+@media (max-width: 520px) {
+  .bar {
+    min-height: 44px;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .text {
+    font-size: 1.1rem;
+  }
+
+  .icon {
+    width: 17px;
+    height: 17px;
+  }
+}

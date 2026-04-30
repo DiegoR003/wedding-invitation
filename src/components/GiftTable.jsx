@@ -1,55 +1,45 @@
-import styles from './GiftTable.module.css'
+import { useState } from "react";
+import styles from "./GiftTable.module.css";
 
-export default function GiftTable() {
+export function GiftTable({
+  title = "Por si os lo estabais planteando…",
+  description = "Vuestra presencia es lo más importante para nosotros, pero si queréis tener un detalle con la boda y la luna de miel, os dejamos aquí la información.",
+  buttonLabel = "¡Regalo de boda!",
+  accountLabel = "Resumen:",
+  accountValue = "#bodorriomónicajavier",
+}) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(accountValue);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  }
+
   return (
-    <section className={styles.section} id="regalos">
-      <div className={styles.container}>
-        <p className="section-label">Mesa de regalos</p>
-        <h2 className={styles.title}>El mejor regalo es tu presencia</h2>
+    <section className={styles.section} aria-labelledby="gift-title">
+      <div className={styles.inner}>
+        <h2 id="gift-title" className={styles.title}>
+          {title}
+        </h2>
 
-        <div className="gold-divider">
-          <span className="gold-divider-icon">◆</span>
-        </div>
+        <p className={styles.description}>{description}</p>
 
-        <p className={styles.text}>
-          Tu compañía en este día tan especial es todo lo que necesitamos.<br />
-          Sin embargo, si deseas hacernos llegar un detalle, lo recibiremos con mucho amor.
-        </p>
+        <div className={styles.card}>
+          <p className={styles.label}>{accountLabel}</p>
+          <p className={styles.value}>{accountValue}</p>
 
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <p className={styles.store}>Liverpool</p>
-            <p className={styles.eventNum}>No. de evento: <strong>78541</strong></p>
-            <a
-              href="https://mesaderegalos.liverpool.com.mx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold"
-            >
-              Ver mesa de regalos
-            </a>
-          </div>
-
-          <div className={styles.card}>
-            <p className={styles.store}>Palacio de Hierro</p>
-            <p className={styles.eventNum}>No. de evento: <strong>98759</strong></p>
-            <a
-              href="https://www.elpalaciodehierro.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold"
-            >
-              Ver mesa de regalos
-            </a>
-          </div>
-
-          <div className={styles.card}>
-            <p className={styles.store}>Sobre de Efectivo</p>
-            <p className={styles.eventNum}>También aceptamos con mucho cariño<br />cualquier contribución directa</p>
-            <div className={styles.heartIcon}>♥</div>
-          </div>
+          <button className={styles.copyButton} type="button" onClick={handleCopy}>
+            {copied ? "Copiado" : buttonLabel}
+          </button>
         </div>
       </div>
     </section>
-  )
+  );
 }
+
+export default GiftTable;

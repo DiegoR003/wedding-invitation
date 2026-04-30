@@ -1,61 +1,106 @@
-import { useState, useEffect } from 'react'
-import styles from './Countdown.module.css'
+import { useEffect, useMemo, useState } from "react";
+import styles from "./Countdown.module.css";
 
-const WEDDING_DATE = new Date('2025-11-15T18:00:00')
+const SECOND = 1000;
+const MINUTE = SECOND * 60;
+const HOUR = MINUTE * 60;
+const DAY = HOUR * 24;
 
-function pad(n) {
-  return String(n).padStart(2, '0')
+function getTimeLeft(targetDate) {
+  const target = new Date(targetDate).getTime();
+  const now = Date.now();
+  const difference = target - now;
+
+  if (Number.isNaN(target) || difference <= 0) {
+    return {
+      isFinished: true,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
+
+  return {
+    isFinished: false,
+    days: Math.floor(difference / DAY),
+    hours: Math.floor((difference % DAY) / HOUR),
+    minutes: Math.floor((difference % HOUR) / MINUTE),
+    seconds: Math.floor((difference % MINUTE) / SECOND),
+  };
 }
 
-export default function Countdown() {
-  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const [passed, setPassed] = useState(false)
+function formatUnit(value) {
+  return String(value).padStart(2, "0");
+}
+
+export function Countdown({
+  targetDate = "2026-10-01T13:00:00",
+  title = "¡YA QUEDA MENOS!",
+  finishedMessage = "¡Ya estáis casados!",
+  calendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE",
+}) {
+  const initialTimeLeft = useMemo(() => getTimeLeft(targetDate), [targetDate]);
+  const [timeLeft, setTimeLeft] = useState(initialTimeLeft);
 
   useEffect(() => {
-    function update() {
-      const now = new Date()
-      const diff = WEDDING_DATE - now
-      if (diff <= 0) {
-        setPassed(true)
-        return
-      }
-      setTime({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [])
+    setTimeLeft(getTimeLeft(targetDate));
+
+    const intervalId = window.setInterval(() => {
+      setTimeLeft(getTimeLeft(targetDate));
+    }, SECOND);
+
+    return () => window.clearInterval(intervalId);
+  }, [targetDate]);
+
+  const units = [
+    { label: "Días", value: timeLeft.days, shouldPad: false },
+    { label: "Horas", value: timeLeft.hours, shouldPad: true },
+    { label: "Minutos", value: timeLeft.minutes, shouldPad: true },
+    { label: "Segundos", value: timeLeft.seconds, shouldPad: true },
+  ];
 
   return (
-    <section className={styles.section} id="cuenta-regresiva">
+    <section className={styles.countdown} aria-labelledby="countdown-title">
       <div className={styles.inner}>
-        <p className="section-label">Faltan</p>
-        {passed ? (
-          <p className={styles.passedMsg}>¡Hoy es el gran día! 🥂</p>
+        <h2 id="countdown-title" className={styles.title}>
+          {title}
+        </h2>
+
+        {timeLeft.isFinished ? (
+          <p className={styles.finishedMessage}>{finishedMessage}</p>
         ) : (
-          <div className={styles.grid}>
-            {[
-              { value: time.days, label: 'Días' },
-              { value: time.hours, label: 'Horas' },
-              { value: time.minutes, label: 'Minutos' },
-              { value: time.seconds, label: 'Segundos' },
-            ].map(({ value, label }) => (
-              <div key={label} className={styles.block}>
-                <div className={styles.number}>{pad(value)}</div>
-                <div className={styles.label}>{label}</div>
+          <div className={styles.timer} role="timer" aria-live="polite">
+            {units.map((unit, index) => (
+              <div className={styles.unitWrapper} key={unit.label}>
+                <div className={styles.unit}>
+                  <span className={styles.amount}>
+                    {unit.shouldPad ? formatUnit(unit.value) : unit.value}
+                  </span>
+                  <span className={styles.label}>{unit.label}</span>
+                </div>
+
+                {index < units.length - 1 && (
+                  <span className={styles.separator} aria-hidden="true">
+                    :
+                  </span>
+                )}
               </div>
             ))}
           </div>
         )}
-        <div className={styles.tagline}>
-          <p>para unir nuestras vidas para siempre</p>
-        </div>
+
+        <a
+          className={styles.calendarButton}
+          href={calendarUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Guardar fecha Google Calendar
+        </a>
       </div>
     </section>
-  )
+  );
 }
+
+export default Countdown;

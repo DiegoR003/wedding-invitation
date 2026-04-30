@@ -1,59 +1,100 @@
-import styles from './Hero.module.css'
-import RingsAnimation from './RingsAnimation'
+import styles from "./Hero.module.css";
 
-export default function Hero() {
+import ringsImage from "../assets/wedding/anillos-de-matrimonio-para-pagina-de-bodas-estilo-clasico.png";
+import musicImage from "../assets/wedding/Ya-esta-aqui-nuestra-boda.png";
+import badgeImage from "../assets/wedding/Nos-casamos.png";
+
+export function Hero({
+  eyebrow = "¡Nos casamos!",
+  couple = "Mónica & Javier",
+  musicLabel = "¡Haz clic y deja que suene la magia!",
+  weddingDate = "01/10/2026",
+  ceremony = {
+    time: "13:00 horas",
+    place: "Parroquia San Fermín de los Navarros",
+    address: "Paseo de Eduardo Dato, 10, Madrid",
+    mapUrl:
+      "https://www.google.com/maps/place/Parroquia+de+San+Ferm%C3%ADn+de+los+Navarros",
+  },
+  reception = {
+    place: "Antigua Fábrica de Harinas",
+    address: "Ctra. M-128, Km 1,3, Jarama, Madrid",
+    mapUrl: "https://www.google.com/maps",
+  },
+  onPlayMusic,
+}) {
   return (
-    <section className={styles.hero} id="inicio">
-      {/* Particle background dots */}
-      <div className={styles.particles}>
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div key={i} className={styles.particle} style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${3 + Math.random() * 4}s`,
-            width: `${1 + Math.random() * 2}px`,
-            height: `${1 + Math.random() * 2}px`,
-          }} />
-        ))}
+    <section id="inicio" className={styles.hero}>
+      <div className={styles.topSection}>
+        <div className={styles.topInner}>
+          <img className={styles.rings} src={ringsImage} alt="" />
+
+          <p className={styles.eyebrow}>{eyebrow}</p>
+
+          <h1 className={styles.title}>{couple}</h1>
+
+          <p className={styles.musicLabel}>{musicLabel}</p>
+
+          <div className={styles.musicCard}>
+            <img
+              className={styles.musicImage}
+              src={musicImage}
+              alt="Reproductor de música"
+            />
+
+            <button
+              className={styles.playButton}
+              type="button"
+              aria-label="Reproducir música"
+              onClick={onPlayMusic}
+            >
+              <svg viewBox="0 0 24 24" className={styles.playIcon} aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
+
+          <img className={styles.badge} src={badgeImage} alt="" />
+        </div>
       </div>
 
-      {/* Top ornament */}
-      <div className={`${styles.topLabel} animate-fade-up delay-1`}>
-        <span className="section-label">Con amor te invitamos a</span>
-      </div>
+      <div className={styles.bottomSection}>
+        <div className={styles.bottomInner}>
+          <div className={styles.detailGroup}>
+            <p className={styles.label}>Fecha de la boda:</p>
+            <p className={styles.valueLarge}>{weddingDate}</p>
+          </div>
 
-      {/* Rings Animation */}
-      <div className={`${styles.ringsWrap} animate-fade delay-2`}>
-        <RingsAnimation />
-      </div>
+          <div className={styles.detailGroup}>
+            <p className={styles.label}>Ceremonia:</p>
+            <p className={styles.valueLarge}>{ceremony.time}</p>
+            <p className={styles.valueMedium}>{ceremony.place}</p>
+            <p className={styles.valueSmall}>{ceremony.address}</p>
+            <a
+              className={styles.link}
+              href={ceremony.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              VER UBICACIÓN
+            </a>
+          </div>
 
-      {/* Names */}
-      <div className={`${styles.namesBlock} animate-fade-up delay-2`}>
-        <h1 className={styles.name1}>Sofía</h1>
-        <div className={styles.ampersand}>&</div>
-        <h1 className={styles.name2}>Alejandro</h1>
+          <div className={styles.detailGroup}>
+            <p className={styles.label}>Banquete y celebración:</p>
+            <p className={styles.valueMedium}>{reception.place}</p>
+            <p className={styles.valueSmall}>{reception.address}</p>
+            <a
+              className={styles.link}
+              href={reception.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              VER UBICACIÓN
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div className={`${styles.subtitle} animate-fade-up delay-3`}>
-        <p>¡Nos casamos!</p>
-      </div>
-
-      <div className={`${styles.date} animate-fade-up delay-4`}>
-        <span>15 · Noviembre · 2025</span>
-      </div>
-
-      {/* Gold divider */}
-      <div className={`gold-divider animate-fade delay-4`}>
-        <span className="gold-divider-icon">◆</span>
-      </div>
-
-      <div className={`${styles.scroll} animate-fade delay-5`}>
-        <a href="#nosotros" className="btn-gold">Descubrir</a>
-      </div>
-
-      {/* Bottom fade */}
-      <div className={styles.bottomFade} />
     </section>
-  )
+  );
 }

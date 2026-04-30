@@ -1,49 +1,28 @@
-import styles from './Footer.module.css'
-import RingsAnimation from './RingsAnimation'
+import styles from "./Footer.module.css";
 
-export default function Footer() {
+export default function Footer({
+  couple = "Mónica & Javier",
+  designerName = "Diego R",
+  designerUrl = "https://tusitio.com",
+}) {
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.ringsSmall}>
-          <RingsAnimation />
-        </div>
+      <div className={styles.inner}>
+        <p className={styles.signature}>{couple}</p>
 
-        <div className={styles.names}>
-          <span className={styles.name}>Sofía</span>
-          <span className={styles.amp}>&</span>
-          <span className={styles.name}>Alejandro</span>
-        </div>
+        <p className={styles.copy}>
+          © {year} Invitación digital. Todos los derechos reservados.
+        </p>
 
-        <p className={styles.date}>15 · Noviembre · 2025</p>
-
-        <div className={styles.divider} />
-
-        <nav className={styles.nav}>
-          {[
-            { href: '#inicio', label: 'Inicio' },
-            { href: '#nosotros', label: 'Nuestra Historia' },
-            { href: '#detalles', label: 'Detalles' },
-            { href: '#confirmacion', label: 'Confirmar' },
-            { href: '#regalos', label: 'Regalos' },
-          ].map(link => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className={styles.divider} />
-
-        <div className={styles.credits}>
-          <p className={styles.love}>Con amor, para siempre ♥</p>
-          <p className={styles.copy}>
-            © 2025 · Diseño & Desarrollo por{' '}
-            <span className={styles.author}>Diego R.</span>
-            {' '}· Todos los derechos reservados
-          </p>
-        </div>
+        <p className={styles.credit}>
+          Design &amp; Powered by{" "}
+          <a href={designerUrl} target="_blank" rel="noreferrer">
+            {designerName}
+          </a>
+        </p>
       </div>
     </footer>
-  )
+  );
 }
