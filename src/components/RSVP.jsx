@@ -3,7 +3,7 @@ import styles from "./RSVP.module.css";
 export function RSVP({
   description = "Pulsa el botón y rellena el formulario para confirmar asistencia o añadir lo que necesites como intolerancias alimenticias o preguntar dudas.",
   buttonLabel = "¡Confirma tu asistencia!",
-  formUrl = "#confirmar-asistencia",
+  formUrl = "/asistencia",
   leftImage,
   rightImage,
 }) {

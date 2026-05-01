@@ -183,7 +183,7 @@ export default function AsistenciaPage() {
               </button>
             </form>
 
-            <a className={styles.backButton} href="/">
+            <a className={styles.backButton} href="/informacion">
               Volver a la página de inicio
             </a>
           </div>

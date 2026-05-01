@@ -61,7 +61,7 @@ export default function Navbar() {
           <img className={styles.mobileLogo} src={logoImage} alt="Mónica y Javier" />
         </a>
 
-        <a className={styles.mobileCta} href="#asistencia">
+        <a className={styles.mobileCta} href="/asistencia">
           ¡Confirma asistencia!
         </a>
       </nav>
