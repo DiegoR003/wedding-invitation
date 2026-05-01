@@ -4,8 +4,8 @@ import styles from "./Navbar.module.css";
 import logoImage from "../assets/wedding/Logo-boda2.png";
 
 const leftLinks = [
-  { href: "#informacion", label: "Información" },
-  { href: "#asistencia", label: "Asistencia" },
+  { href: "/informacion", label: "Información" },
+  { href: "/asistencia", label: "Asistencia" },
   { href: "#desplazamientos", label: "Desplazamientos" },
 ];
 

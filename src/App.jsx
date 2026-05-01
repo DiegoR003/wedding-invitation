@@ -79,7 +79,7 @@ function App() {
   designerUrl="https://tusitio.com"
 />
 
-     <StickyRSVPBar href="#asistencia" />
+     <StickyRSVPBar href="/asistencia" />
     </>
   );
 }
