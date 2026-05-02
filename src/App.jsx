@@ -14,8 +14,6 @@ import StickyRSVPBar from "./components/StickyRSVPBar";
 
 import { weddingData } from "./data/weddingData";
 
-
-
 function App() {
   return (
     <>
@@ -40,8 +38,6 @@ function App() {
         schedule={weddingData.schedule}
       />
 
-      
-
       <FAQ items={weddingData.faq} />
 
       <Timeline
@@ -61,9 +57,8 @@ function App() {
       <GiftTable
         title={weddingData.gift.title}
         description={weddingData.gift.description}
-        buttonLabel={weddingData.gift.buttonLabel}
-        accountLabel={weddingData.gift.accountLabel}
-        accountValue={weddingData.gift.accountValue}
+        buttonLabel="¡Regalo de boda!"
+        buttonHref="/regalos"
       />
 
       <Hashtag />
@@ -74,12 +69,12 @@ function App() {
       />
 
       <Footer
-  couple="Nancy & Jose"
-  designerName="Diego R."
-  designerUrl="https://tusitio.com"
-/>
+        couple="Nancy & Jose"
+        designerName="Diego R."
+        designerUrl="https://tusitio.com"
+      />
 
-     <StickyRSVPBar href="/asistencia" />
+      <StickyRSVPBar href="/asistencia" />
     </>
   );
 }

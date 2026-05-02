@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import App from "./App.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import AsistenciaPage from "./pages/AsistenciaPage.jsx";
 import MusicaPage from "./pages/MusicaPage.jsx";
 import GiftListPage from "./pages/GiftListPage.jsx";
@@ -11,6 +12,8 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/informacion" element={<App />} />

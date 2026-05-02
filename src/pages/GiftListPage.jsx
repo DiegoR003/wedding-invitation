@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 import StickyRSVPBar from "../components/StickyRSVPBar";
 import Hashtag from "../components/Hashtag";
@@ -11,10 +13,19 @@ import styles from "./GiftListPage.module.css";
 import ListaBoda from "../assets/wedding/Lista-de-boda.jpg";
 
 export default function GiftListPage() {
+  const location = useLocation();
+
   const iban = "IBAN ES00 1111 2222 3333 4444 5555";
   const [copied, setCopied] = useState(false);
 
-  async function handleCopy() {
+  useEffect(() => {
+    setCopied(false);
+  }, [location.pathname]);
+
+  async function handleCopy(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     try {
       await navigator.clipboard.writeText(iban);
       setCopied(true);
@@ -42,8 +53,6 @@ export default function GiftListPage() {
 
         <section className={styles.giftSection} aria-labelledby="gift-title">
           <div className={styles.inner}>
-            {/* <p className={styles.kicker}>Regalo de boda</p> */}
-
             <p className={styles.intro}>
               El regalo es opcional, pero la asistencia es obligatoria. Si
               quieres tener un detalle con nosotros y contribuir de alguna otra
@@ -74,9 +83,9 @@ export default function GiftListPage() {
               ¡Muchísimas gracias!
             </h1>
 
-            <a className={styles.backButton} href="/">
+            <Link className={styles.backButton} to="/">
               Volver a la página de inicio
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -88,8 +97,8 @@ export default function GiftListPage() {
         />
 
         <Footer
-          couple="Mónica & Javier"
-          designerName="Diego R"
+          couple="Nancy & Jose"
+          designerName="Diego R."
           designerUrl="https://tusitio.com"
         />
       </main>
