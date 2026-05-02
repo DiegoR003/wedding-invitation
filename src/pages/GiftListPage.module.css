@@ -195,6 +195,21 @@
   .backButton {
     width: min(100%, 315px);
   }
+
+  .heroImage {
+    min-height: 320px;
+    padding-inline: 1rem;
+    background-position: center;
+  }
+
+  .heroTitle {
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+    text-align: center;
+    font-size: clamp(3.4rem, 18vw, 5rem);
+    line-height: 0.95;
+  }
 }
 
 .heroImage {
