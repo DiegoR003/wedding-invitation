@@ -7,13 +7,12 @@ const leftLinks = [
   { href: "/informacion", label: "Información" },
   { href: "/asistencia", label: "Asistencia" },
   { href: "#desplazamientos", label: "Desplazamientos" },
-  
 ];
 
 const rightLinks = [
   { href: "/musica", label: "Música" },
-  
-  { href: "#regalos", label: "Regalo de boda" },
+
+  { href: "/regalos", label: "Regalo de boda" },
 ];
 
 const mobileLinks = [...leftLinks, ...rightLinks];
@@ -59,7 +58,11 @@ export default function Navbar() {
         </button>
 
         <a href="#inicio" className={styles.mobileLogoLink} aria-label="Inicio">
-          <img className={styles.mobileLogo} src={logoImage} alt="Mónica y Javier" />
+          <img
+            className={styles.mobileLogo}
+            src={logoImage}
+            alt="Mónica y Javier"
+          />
         </a>
 
         <a className={styles.mobileCta} href="/asistencia">
@@ -67,7 +70,9 @@ export default function Navbar() {
         </a>
       </nav>
 
-      <div className={`${styles.mobileMenu} ${open ? styles.mobileMenuOpen : ""}`}>
+      <div
+        className={`${styles.mobileMenu} ${open ? styles.mobileMenuOpen : ""}`}
+      >
         {mobileLinks.map((link) => (
           <a
             key={link.href}

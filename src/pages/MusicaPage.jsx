@@ -5,12 +5,10 @@ import Hashtag from "../components/Hashtag";
 import WeddingSummary from "../components/WeddingSummary";
 import Footer from "../components/Footer";
 
-
 import musicHero from "../assets/wedding/Fiesta-en-las-bodas.jpg";
 
 import { weddingData } from "../data/weddingData";
 import styles from "./MusicaPage.module.css";
-
 
 export default function MusicaPage() {
   const [songs, setSongs] = useState("");
@@ -43,7 +41,7 @@ export default function MusicaPage() {
 
         <section className={styles.musicSection} aria-labelledby="musica-title">
           <div className={styles.inner}>
-            <p className={styles.kicker}>Música</p>
+            {/* <p className={styles.kicker}>Música</p>*/}
 
             <h1 id="musica-title" className={styles.title}>
               ¡Ayúdanos a crear una playlist para la boda!
@@ -57,8 +55,6 @@ export default function MusicaPage() {
               </p>
 
               <p>¡Ayúdanos a mejorar el repertorio!</p>
-
-              <p className={styles.bold}>¡No os cortéis al poner canciones!</p>
             </div>
 
             <form className={styles.formCard} onSubmit={handleSubmit}>

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "./App.jsx";
 import AsistenciaPage from "./pages/AsistenciaPage.jsx";
 import MusicaPage from "./pages/MusicaPage.jsx";
+import GiftListPage from "./pages/GiftListPage.jsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -15,9 +16,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/informacion" element={<App />} />
         <Route path="/asistencia" element={<AsistenciaPage />} />
         <Route path="/musica" element={<MusicaPage />} />
+        <Route path="/regalos" element={<GiftListPage />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
