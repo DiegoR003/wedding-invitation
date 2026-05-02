@@ -7,10 +7,11 @@ const leftLinks = [
   { href: "/informacion", label: "Información" },
   { href: "/asistencia", label: "Asistencia" },
   { href: "#desplazamientos", label: "Desplazamientos" },
+  
 ];
 
 const rightLinks = [
-  { href: "#musica", label: "Música" },
+  { href: "/musica", label: "Música" },
   
   { href: "#regalos", label: "Regalo de boda" },
 ];
